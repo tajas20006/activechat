@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "activechat"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+environs = "^9.5.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+ruff = "^0.0.260"
+black = "^23.3.0"
+pre-commit = "^3.2.1"
+
+[tool.ruff]
+select = ["E", "F", "W", "B", "C", "I", "N", "D", "UP", "DTZ", "SIM", "PTH", "PL"]
+ignore = ["D100", "D104", "D400", "D401", "D403", "D415"]
+ignore-init-module-imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
