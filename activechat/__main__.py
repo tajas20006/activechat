@@ -3,7 +3,7 @@ from typing import NamedTuple
 from environs import Env
 
 from activechat.content_retrievers import ContentRetriever
-from activechat.models import Reply
+from activechat.models import Additional, Reply
 from activechat.plugins import Plugin
 from activechat.repliers import Replier
 from activechat.reply_generators import ReplyGenerator
@@ -39,8 +39,13 @@ class ActiveChat:
         replies: list[Reply] = []
         for content in contents:
             reply = self.reply_generator.generate_reply(content)
+            responses: list[Additional] = []
             for plugin in self.plugins:
-                plugin.modify_reply_in_place(reply)
+                response = plugin.modify_reply_in_place(reply)
+                if response:
+                    responses.append(response)
+            reply.additional = responses
+
             replies.append(replies)
         self.replier.reply_all(replies)
 

@@ -10,7 +10,7 @@ class Additional:
 
 
 @dataclass
-class Audio(Additional):
+class Attachment(Additional):
     """Audio"""
 
     filepath: Path

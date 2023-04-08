@@ -1,4 +1,4 @@
 from .content import Content
-from .reply import Audio, Reply
+from .reply import Additional, Attachment, Reply
 
-__all__ = ["Content", "Audio", "Reply"]
+__all__ = ["Content", "Attachment", "Reply", "Additional"]

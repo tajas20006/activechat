@@ -2,14 +2,14 @@ from abc import ABC, abstractmethod
 
 from environs import Env
 
-from activechat.models import Reply
+from activechat.models import Additional, Reply
 
 
 class Plugin(ABC):
     """Plugin to modify reply"""
 
     @abstractmethod
-    def modify_reply_in_place(self, reply: Reply):
+    def modify_reply_in_place(self, reply: Reply) -> Additional:
         """modify reply.
 
         mainly used to add additional to reply.
