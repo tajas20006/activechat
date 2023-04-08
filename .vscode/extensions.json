@@ -4,6 +4,7 @@
         "ryanluker.vscode-coverage-gutters",
         "eamodio.gitlens",
         "ms-python.python",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "davidanson.vscode-markdownlint"
     ]
 }
