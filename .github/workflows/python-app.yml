@@ -33,4 +33,5 @@ jobs:
         poetry run ruff check .
     - name: Test with pytest
       run: |
+        cp .env.example .env
         poetry run pytest tests
