@@ -26,5 +26,5 @@ def env(mocker: MockerFixture):
     """mock environ and load .env"""
     mocker.patch.dict("os.environ", {}, clear=True)
     env = Env()
-    env.read_env("tests/.env.example")
+    env.read_env()
     yield env

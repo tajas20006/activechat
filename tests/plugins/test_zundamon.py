@@ -3,8 +3,10 @@ from responses import RequestsMock
 
 from activechat.models import Reply
 from activechat.plugins import Zundamon
+from tests.testutils import ci
 
 
+@ci
 def test_synthesize(env: Env, mocked_responses: RequestsMock):
     """ファイルが出力されることを確認する"""
     zundamon = Zundamon(env)
