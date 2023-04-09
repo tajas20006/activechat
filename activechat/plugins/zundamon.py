@@ -21,18 +21,30 @@ class Zundamon(Plugin):
         with env.prefixed("ZUNDAMON_"):
             self.server = env("SERVER")
             self.character = env("CHARACTER")
-            self.type = env("FRAVOR")
+            self.style = env("STYLE")
 
         self.speaker_id = SPEAKER_NOT_SET
         self.tmp_dir: Path = env.path("TMP_DIR", "tmp") / "zundamon"
 
     def _set_speaker(self):
-        response = requests.get(self.server + "/speakers")
+        try:
+            response = requests.get(self.server + "/speakers")
+            response.raise_for_status()
+        except HTTPError as e:
+            message = (
+                "failed to get speaker list: "
+                f"status_code={response.status_code}, reason={response.text}"
+            )
+            raise ZundamonSynthesisError(message) from e
+        except RequestException as e:
+            message = "failed to get speaker list"
+            raise ZundamonSynthesisError(message) from e
+
         for character in response.json():
             if character["name"] != self.character:
                 continue
             for style in character["styles"]:
-                if style["name"] != self.type:
+                if style["name"] != self.style:
                     continue
                 self.speaker_id = style["id"]
                 break
@@ -42,7 +54,7 @@ class Zundamon(Plugin):
         if self.speaker_id == SPEAKER_NOT_SET:
             message = (
                 "zundamon: specified speaker does not exist: "
-                f"character={self.character}, style={self.type}"
+                f"character={self.character}, style={self.style}"
             )
             raise ConfigError(message)
 
