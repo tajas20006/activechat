@@ -23,4 +23,5 @@ class Reply:
     title: str
     content: str
     source: str
-    additional: list[Additional] = field(default_factory=list)
+    url: str | None = None
+    additionals: list[Additional] = field(default_factory=list)

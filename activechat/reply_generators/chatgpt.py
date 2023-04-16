@@ -24,6 +24,6 @@ class ChatGPT(ReplyGenerator):
             title=content.title,
             content=content.content,
             source=content.source,
-            additional=[],
+            additionals=[],
         )
         return reply

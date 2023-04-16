@@ -1,4 +1,5 @@
 import shutil
+from pathlib import Path
 
 import responses
 from environs import Env
@@ -28,3 +29,10 @@ def env(mocker: MockerFixture):
     env = Env()
     env.read_env()
     yield env
+
+
+@fixture
+def data_dir() -> Path:
+    """Return path to data directory"""
+    d = Path(__file__).parent / "data"
+    return d

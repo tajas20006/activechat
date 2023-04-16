@@ -44,7 +44,7 @@ class ActiveChat:
                 response = plugin.modify_reply_in_place(reply)
                 if response:
                     responses.append(response)
-            reply.additional = responses
+            reply.additionals = responses
 
             replies.append(replies)
         self.replier.reply_all(replies)
